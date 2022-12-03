@@ -1,6 +1,6 @@
-(ns com.scarytom.aoc-2022.day01-test
+(ns com.scarytom.aoc.xmas2022.day01-test
   (:require [clojure.test :refer [deftest is]]
-            [com.scarytom.aoc-2022.day01 :as day01]))
+            [com.scarytom.aoc.xmas2022.day01 :as day01]))
 
 (def sample-lines ["1000"
                    "2000"

@@ -1,10 +1,10 @@
-(ns com.scarytom.aoc-2022.day01
+(ns com.scarytom.aoc.xmas2022.day01
   (:require [clojure.java.io :as io]
             [clojure.string :as string]))
 
 (defn read-elf-calories
   ([]
-   (with-open [reader (io/reader (io/resource "day01_1.txt"))]
+   (with-open [reader (io/reader (io/resource "inputs/2022/day01.txt"))]
      (read-elf-calories (line-seq reader))))
   ([lines]
    (->> lines

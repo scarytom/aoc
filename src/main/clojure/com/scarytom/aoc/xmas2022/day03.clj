@@ -1,4 +1,4 @@
-(ns com.scarytom.aoc-2022.day03
+(ns com.scarytom.aoc.xmas2022.day03
   (:require [clojure.java.io :as io]
             [clojure.set :as set]))
 
@@ -14,7 +14,7 @@
 
 (defn sack-contents
   ([]
-   (with-open [reader (io/reader (io/resource "day03_1.txt"))]
+   (with-open [reader (io/reader (io/resource "inputs/2022/day03.txt"))]
      (sack-contents (line-seq reader))))
   ([lines]
    (mapv (fn [line]

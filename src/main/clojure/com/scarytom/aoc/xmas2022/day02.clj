@@ -1,4 +1,4 @@
-(ns com.scarytom.aoc-2022.day02
+(ns com.scarytom.aoc.xmas2022.day02
   (:require [clojure.java.io :as io]))
 
 (def line->score-1 {
@@ -26,7 +26,7 @@
                     })
 
 (defn score-strategy [line->score]
-  (with-open [reader (io/reader (io/resource "day02_1.txt"))]
+  (with-open [reader (io/reader (io/resource "inputs/2022/day02.txt"))]
     (->> (line-seq reader)
          (map line->score)
          (reduce +))))
