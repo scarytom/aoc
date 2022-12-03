@@ -34,9 +34,8 @@
   "Reads the input file for the specified day and calls the specified function with a lazy seq of the lines
   within that file."
   [year day f]
-  (let [input-path (str "inputs/" year "/day" (format "%02d" day) ".txt")]
-    (with-open [reader (io/reader (io/resource input-path))]
-      (f (line-seq reader)))))
+  (with-open [reader (io/reader (obtain-input-file year day))]
+    (f (line-seq reader))))
 
 (defn only
   "Returns the only element in coll. If coll contains anything other than exactly one non-nil element, throws
