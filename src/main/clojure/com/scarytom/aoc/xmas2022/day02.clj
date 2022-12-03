@@ -1,5 +1,5 @@
 (ns com.scarytom.aoc.xmas2022.day02
-  (:require [clojure.java.io :as io]))
+  (:require [com.scarytom.aoc.utils :as utils]))
 
 (def line->score-1 {
                   "A X" (+ 1 3) ; rock/rock
@@ -26,10 +26,10 @@
                     })
 
 (defn score-strategy [line->score]
-  (with-open [reader (io/reader (io/resource "inputs/2022/day02.txt"))]
-    (->> (line-seq reader)
-         (map line->score)
-         (reduce +))))
+  (utils/read-input-file 2022 2 (fn [lines]
+                                  (->> lines
+                                       (map line->score)
+                                       (reduce +)))))
 
 (defn part-1 []
   (score-strategy line->score-1))

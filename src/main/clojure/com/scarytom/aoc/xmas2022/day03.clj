@@ -1,11 +1,6 @@
 (ns com.scarytom.aoc.xmas2022.day03
-  (:require [clojure.java.io :as io]
-            [clojure.set :as set]))
-
-(defn only [[head & tail :as coll]]
-  (if (and head (empty? tail))
-    head
-    (throw (IllegalStateException. (str "Coll was not 1 item " (vec coll))))))
+  (:require [clojure.set :as set]
+            [com.scarytom.aoc.utils :as utils]))
 
 (defn priority [item]
   (if (-> item (int) (> 90))
@@ -14,8 +9,7 @@
 
 (defn sack-contents
   ([]
-   (with-open [reader (io/reader (io/resource "inputs/2022/day03.txt"))]
-     (sack-contents (line-seq reader))))
+   (utils/read-input-file 2022 3 sack-contents))
   ([lines]
    (mapv (fn [line]
            (let [mid-point (/ (count line) 2)]
@@ -36,7 +30,7 @@
   (->> sacks
        (map (comp set (partial apply concat)))
        (apply set/intersection)
-       (only)))
+       (utils/only)))
 
 (defn part-2 []
   (->> (sack-contents)
