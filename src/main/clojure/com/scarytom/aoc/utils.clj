@@ -16,3 +16,9 @@
   (if (and head (empty? tail))
     head
     (throw (IllegalStateException. (str "Coll was not 1 item " (vec coll))))))
+
+(defn chop
+  "chops a coll into n seqs of equal length"
+  [n coll]
+  (let [piece-len (/ (count coll) n)]
+    (partition piece-len coll)))

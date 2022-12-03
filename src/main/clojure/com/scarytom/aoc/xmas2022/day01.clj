@@ -18,7 +18,6 @@
 
 (defn part-2 []
   (->> (read-elf-calories)
-       (sort)
-       (reverse)
+       (sort >)
        (take 3)
        (reduce +)))
