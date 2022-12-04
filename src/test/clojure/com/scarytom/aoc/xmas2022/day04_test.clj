@@ -12,3 +12,10 @@
 (deftest read-assignment-test
   (is (= (day04/read-assignment (first sample-lines))
          [2 4 6 8])))
+
+
+(deftest part-1-solution
+  (is (= (day04/part-1) 500)))
+
+(deftest part-2-solution
+  (is (= (day04/part-2) 815)))

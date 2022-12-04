@@ -13,3 +13,9 @@
 (deftest scores-sample-data-part-2
   (is (= (map day02/line->score-2 sample-lines)
          [4 1 7])))
+
+(deftest part-1-solution
+  (is (= (day02/part-1) 14069)))
+
+(deftest part-2-solution
+  (is (= (day02/part-2) 12411)))

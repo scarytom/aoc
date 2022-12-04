@@ -20,3 +20,9 @@
 (deftest calculates-elf-snack-calories
   (is (= (day01/read-elf-calories sample-lines)
          [6000 4000 11000 24000 10000])))
+
+(deftest part-1-solution
+  (is (= (day01/part-1) 69289)))
+
+(deftest part-2-solution
+  (is (= (day01/part-2) 205615)))

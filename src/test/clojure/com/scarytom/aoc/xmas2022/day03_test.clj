@@ -18,3 +18,9 @@
 (deftest prioritises-things
   (is (= (day03/prioritise (take 3 sample-lines))
          (day03/priority \r))))
+
+(deftest part-1-solution
+  (is (= (day03/part-1) 8123)))
+
+(deftest part-2-solution
+  (is (= (day03/part-2) 2620)))
