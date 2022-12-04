@@ -50,3 +50,9 @@
   [n coll]
   (let [piece-len (/ (count coll) n)]
     (partition piece-len coll)))
+
+(defn to-int [s]
+  (try
+    (Integer/parseInt s)
+    (catch Exception _
+      (throw (IllegalStateException. (str "The string >" s "< is not an int"))))))
