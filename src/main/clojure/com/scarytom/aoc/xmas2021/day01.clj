@@ -12,6 +12,5 @@
 (defn part-2 []
   (utils/read-input-file 2021 1 (fn [lines]
                                   (let [ints (map utils/to-int lines)]
-                                    (->> (map vector ints (drop 1 ints) (drop 2 ints))
-                                         (map #(reduce + %))
+                                    (->> (map + ints (drop 1 ints) (drop 2 ints))
                                          (count-increases))))))
