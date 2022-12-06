@@ -1,5 +1,4 @@
-{:deps    {org.clojure/clojure    {:mvn/version "1.11.1"}
-           org.clojure/core.cache {:mvn/version "1.0.225"}}
+{:deps    {org.clojure/clojure    {:mvn/version "1.11.1"}}
  :paths   ["src/main/clojure" "src/main/resources"]
  :aliases {:dev  {:extra-paths ["src/dev/clojure"]}
            :test {:extra-paths ["src/test/clojure"]

@@ -1,7 +1,9 @@
 (ns com.scarytom.aoc.utils
   (:require [clojure.java.io :as io])
-  (:import [java.net URI]
-           [java.net.http HttpClient HttpRequest HttpResponse$BodyHandlers]))
+  (:import [clojure.lang IPersistentStack Indexed PersistentQueue]
+           [java.net URI]
+           [java.net.http HttpClient HttpRequest HttpResponse$BodyHandlers]
+           [java.util Collection]))
 
 (defn download
   "Downloads an Advent of Code input file.  Relies on a session cookie, which can be obtained from the browser
@@ -65,3 +67,31 @@
   (if (pred val)
     (conj coll val)
     coll))
+
+(deftype RingBuf [capacity ^PersistentQueue buf]
+  IPersistentStack
+  (peek [_this]
+    (peek buf))
+  (pop [_this]
+    (pop buf))
+  (cons [_this x]
+    (if (= (count buf) capacity)
+      (RingBuf. capacity (pop (conj buf x)))
+      (RingBuf. capacity (conj buf x))))
+  (seq [_this]
+    (seq buf))
+
+  Collection
+  (iterator [_this]
+    (.iterator buf))
+  (isEmpty [this]
+    (empty? this))
+
+  Indexed
+  (nth [_this i]
+    (nth buf i))
+  (nth [_this i default]
+    (nth buf i default)))
+
+(defn ring-buffer [capacity]
+  (RingBuf. capacity (PersistentQueue/EMPTY)))
