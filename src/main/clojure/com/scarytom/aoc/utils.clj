@@ -51,8 +51,17 @@
   (let [piece-len (/ (count coll) n)]
     (partition piece-len coll)))
 
-(defn to-int [s]
+(defn to-int
+  "Converts a String to an int, giving a helpful exception upon failure"
+  [s]
   (try
     (Integer/parseInt s)
     (catch Exception _
       (throw (IllegalStateException. (str "The string >" s "< is not an int"))))))
+
+(defn conj-when
+  "conj val onto coll if (pred val) returns true, otherwise returns coll unchanged"
+  [pred coll val]
+  (if (pred val)
+    (conj coll val)
+    coll))
