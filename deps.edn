@@ -1,8 +1,9 @@
-{:deps            {org.clojure/clojure                  {:mvn/version "1.11.1"}}
- :paths           ["src/main/clojure" "src/main/resources"]
- :aliases         {:dev      {:extra-paths ["src/dev/clojure"]}
-                   :test     {:extra-paths ["src/test/clojure"]
-                              :extra-deps  {junit/junit            {:mvn/version "4.13.2"}
-                                            lambdaisland/kaocha    {:mvn/version "1.71.1119"}
-                                            org.clojure/test.check {:mvn/version "1.1.1"}}
-                              :main-opts   ["-m" "kaocha.runner"]}}}
+{:deps    {org.clojure/clojure    {:mvn/version "1.11.1"}
+           org.clojure/core.cache {:mvn/version "1.0.225"}}
+ :paths   ["src/main/clojure" "src/main/resources"]
+ :aliases {:dev  {:extra-paths ["src/dev/clojure"]}
+           :test {:extra-paths ["src/test/clojure"]
+                  :extra-deps  {junit/junit            {:mvn/version "4.13.2"}
+                                lambdaisland/kaocha    {:mvn/version "1.71.1119"}
+                                org.clojure/test.check {:mvn/version "1.1.1"}}
+                  :main-opts   ["-m" "kaocha.runner"]}}}
