@@ -23,18 +23,17 @@
    (let [[stacks _ moves] (partition-by string/blank? lines)]
      [(decode-stacks stacks) (decode-moves moves)])))
 
-(defn perform-moves [model stacks moves]
+(defn perform-moves [adjust-fn stacks moves]
   (reduce (fn [stacks [num from to]]
-            (let [adjust-fn (if (= :9000 model) reverse identity)]
-              (-> stacks
-                  (update from (partial drop num))
-                  (update to (partial concat (adjust-fn (take num (get stacks from))))))))
+            (-> stacks
+                (update from (partial drop num))
+                (update to (partial concat (adjust-fn (take num (get stacks from)))))))
           stacks moves))
 
 (defn part-1 []
   (let [[stacks moves] (read-inputs)]
-    (apply str (mapv first (perform-moves :9000 stacks moves)))))
+    (apply str (mapv first (perform-moves reverse stacks moves)))))
 
 (defn part-2 []
   (let [[stacks moves] (read-inputs)]
-    (apply str (mapv first (perform-moves :9001 stacks moves)))))
+    (apply str (mapv first (perform-moves identity stacks moves)))))

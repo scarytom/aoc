@@ -26,7 +26,7 @@
           [1 0 1]])))
 
 (deftest perform-moves-9000
-  (is (= (day05/perform-moves :9000
+  (is (= (day05/perform-moves reverse
                               ['(\N \Z)
                                '(\D \C \M)
                                '(\P)]
@@ -39,7 +39,7 @@
           '(\Z \N \D \P)])))
 
 (deftest perform-moves-9001
-  (is (= (day05/perform-moves :9001
+  (is (= (day05/perform-moves identity
                               ['(\N \Z)
                                '(\D \C \M)
                                '(\P)]
