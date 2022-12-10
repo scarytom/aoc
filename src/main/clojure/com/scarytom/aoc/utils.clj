@@ -61,6 +61,40 @@
     (catch Exception _
       (throw (IllegalStateException. (str "The string >" s "< is not an int"))))))
 
+(defn char-to-int
+  "Converts a char that is a digit into its numerical representation (e.g. \1 -> 1)"
+  [char]
+  {:pre  [(char? char)]
+   :post [(<= 0 % 9)]}
+  (- (int char) 48))
+
+(defn filter-ascending
+  "Returns a sequence of items from coll whose values are greater than the previous top
+   value according to the specified comparator."
+  ([coll]
+   (filter-ascending compare coll))
+  ([comparator coll]
+   (second
+     (reduce (fn [[biggest result :as acc] x]
+               (if (or (empty? result)
+                       (pos? (comparator x biggest)))
+                 [x (conj result x)]
+                 acc)) [nil []] coll))))
+
+(defn explode-grid-columns
+  "Accepts a grid defined as a vector of row vectors and returns that grid exploded out
+   as a vector of rows vectors followed by column vectors"
+  [rows]
+  (concat rows (apply map list rows)))
+
+(defn explode-grid
+  "Accepts a grid defined as a vector of row vectors and returns that grid exploded out
+   as a vector of rows vectors followed by column vectors, followed by both again with the
+   vectors reversed"
+  [rows]
+  (let [rows-and-columns (explode-grid-columns rows)]
+    (concat rows-and-columns (map reverse rows-and-columns))))
+
 (defn conj-when
   "conj val onto coll if (pred val) returns true, otherwise returns coll unchanged"
   [pred coll val]

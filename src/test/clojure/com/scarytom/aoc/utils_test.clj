@@ -19,3 +19,35 @@
              (conj :d)
              (vec))
          [:b :c :d])))
+
+(deftest filter-ascending-test
+  (is (= (utils/filter-ascending [7 1 3]) [7]))
+  (is (= (utils/filter-ascending [2 5 5 1]) [2 5]))
+  (is (= (utils/filter-ascending [2 1]) [2]))
+  (is (= (utils/filter-ascending [9 4 3 1]) [9]))
+  (is (= (utils/filter-ascending [2 3 1 5 4 6]) [2 3 5 6])))
+
+(deftest explode-grid-test
+  (is (= (utils/explode-grid [[1 2 3]
+                              [4 5 6]
+                              [7 8 9]])
+         [
+          ; rows
+          [1 2 3]
+          [4 5 6]
+          [7 8 9]
+
+          ; columns
+          [1 4 7]
+          [2 5 8]
+          [3 6 9]
+
+          ; reversed rows
+          [3 2 1]
+          [6 5 4]
+          [9 8 7]
+
+          ; reversed columns
+          [7 4 1]
+          [8 5 2]
+          [9 6 3]])))
