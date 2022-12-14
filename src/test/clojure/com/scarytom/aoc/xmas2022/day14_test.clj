@@ -19,7 +19,7 @@
            [501 9] [500 9] [499 9] [498 9] [497 9] [496 9] [495 9] [494 9]})))
 
 (deftest finds-next-sand-rest-coord
-  (is (= (day14/find-sand-rest-cood (day14/read-structure sample-lines) [500 0] 9 true)
+  (is (= (day14/find-sand-rest-coord (day14/read-structure sample-lines) [500 0] 9 true)
          [500 8])))
 
 (deftest count-sand-pt-1

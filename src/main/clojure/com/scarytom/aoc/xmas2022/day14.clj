@@ -18,20 +18,20 @@
 (defn read-structure [lines]
   (apply set/union (map read-filled-coords lines)))
 
-(defn find-sand-rest-cood [structure origin floor endless-void?]
+(defn find-sand-rest-coord [structure origin floor endless-void?]
   (when-not (structure origin)
     (loop [[x y :as current-coord] origin]
-      (if (< y floor)
+      (if (>= y floor)
+        (when-not endless-void? [x (dec floor)])
         (if-let [next-coord (first (remove structure [[x (inc y)] [(dec x) (inc y)] [(inc x) (inc y)]]))]
           (recur next-coord)
-          current-coord)
-        (when-not endless-void? [x (dec floor)])))))
+          current-coord)))))
 
 (defn count-sand [endless-void? lines]
   (let [initial-structure (read-structure lines)
         floor (+ 2 (apply max (map second initial-structure)))
         final-structure (loop [structure initial-structure]
-                          (if-let [coord (find-sand-rest-cood structure [500 0] floor endless-void?)]
+                          (if-let [coord (find-sand-rest-coord structure [500 0] floor endless-void?)]
                             (recur (conj structure coord))
                             structure))]
     (count (set/difference final-structure initial-structure))))
