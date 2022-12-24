@@ -102,6 +102,24 @@
     (conj coll val)
     coll))
 
+(defn all-pairs
+  "Returns a seq of tuples reflecting every possible pairing between the values in coll"
+  [coll]
+  (->> (repeat coll)
+       (map drop (range 1 (count coll)))
+       (mapcat #(map vector coll %))))
+
+(defn simplify-ranges
+  "Accepts a collection of tuples defining ranges, which are returned simplified
+  by combining overlapping ranges"
+  [coll]
+  (reduce (fn [[[current-start current-end] & xs :as acc] [start-inclusive end-exclusive :as r]]
+            (if (or (nil? current-end) (> start-inclusive current-end))
+              (conj acc r)
+              (conj xs [current-start (max end-exclusive current-end)])))
+          nil
+          (sort coll)))
+
 (deftype RingBuf [capacity ^PersistentQueue buf]
   IPersistentStack
   (peek [_this]

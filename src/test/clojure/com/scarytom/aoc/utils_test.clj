@@ -51,3 +51,7 @@
           [7 4 1]
           [8 5 2]
           [9 6 3]])))
+
+(deftest simplify-ranges-test
+  (is (= (sort (utils/simplify-ranges [[1 10] [3 6] [8 11] [11 12] [13 14] [22 23]]))
+         [[1 12] [13 14] [22 23]])))
